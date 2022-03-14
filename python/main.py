@@ -1,9 +1,12 @@
 import os
+import glob
 import cv2
 import datetime
 import socket
 import tkinter as tk
 import tkinter.messagebox
+import time
+
 root = tk.Tk()
 root.withdraw()
 
@@ -36,8 +39,19 @@ def show():
     tkinter.messagebox.showinfo('info')
 
 #ファイルを削除する
-os.remove(file)
+file_list = glob.glob("../*txt")
+def deleat():
+    for file in file_list:
+        print("remove:{0}".format(file))
+        os.remove(file)
 
-print("hoge")
+#ハッキングしているかのような文字が表示される
+#秒間で表示したいが現時点でできていない
+hack_message = "sds sdsnewlen(const void *init, size_t initlen) { \n    struct sdshdr *sh; sh = zmalloc(sizeof(struct sdshdr)+initlen+1); \n#ifdef SDS_ABORT_ON_OOM \nif (sh == NULL) sdsOomAbort();\n#else\n    if (sh == NULL) return NULL; \n#endif \nsh->len = initlen; \nsh->free = 0;\n if (initlen) { \nif (init) memcpy(sh->buf, init, initlen);\n     else memset(sh->buf,0,initlen); \n }\nsh->buf[initlen] = '0';\nreturn (char*)sh->buf; \n} "
+for ch in hack_message:
+    print(ch)
+    time.sleep(0.01)
+# if ch == ' ':
+#     print('')
 if __name__ == "__main__":
-    show()
+    print("hoge")
