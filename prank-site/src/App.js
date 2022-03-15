@@ -3,21 +3,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <img src="money.png" alt="" height="300"> */}
+      <h1>儲ける方法</h1>
+      <p>何もせずに月300万稼ぐ方法があります。</p>
+      <p>そんな夢のような方法を教えます。あなたも億万長者になりましょう。</p>
+      <a href="https://google.com">もっと詳しく</a>
     </div>
   );
 }
