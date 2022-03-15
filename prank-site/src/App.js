@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import money from "./static/money.png";
 
 function Home() {
   return (
@@ -13,7 +14,18 @@ function Home() {
 function Profile() {
   return (
     <div>
-      profile pageです
+      <img src={money} alt="金" height="250px"/>
+      {/* profile pageです */}
+      <h1>儲ける方法</h1>
+      <p>何もせずに月300万稼ぐ方法があります。</p>
+      <p>そんな夢のような方法をお教えします。あなたも億万長者になりましょう。</p>
+      <button>もっと詳しく</button>
+      <div id="overlay">
+        <div id="content">
+          <p>これがモーダルウィンドウです</p>
+          <p><button>close</button></p>
+        </div>
+      </div>
     </div>
   );
 }
