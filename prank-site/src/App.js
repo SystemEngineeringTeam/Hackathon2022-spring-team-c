@@ -1,14 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+
+function Home() {
+  return (
+    <div>
+      home pageです
+    </div>
+  );
+}
+
+function Profile() {
+  return (
+    <div>
+      profile pageです
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <div>
+      about pageです
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div>
-      {/* <img src="money.png" alt="" height="300"> */}
-      <h1>儲ける方法</h1>
-      <p>何もせずに月300万稼ぐ方法があります。</p>
-      <p>そんな夢のような方法を教えます。あなたも億万長者になりましょう。</p>
-      <a href="https://google.com">もっと詳しく</a>
+    <div className="App">
+      <h1>Hello world!</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="about" element={<About />} />
+      </Routes>
     </div>
   );
 }
