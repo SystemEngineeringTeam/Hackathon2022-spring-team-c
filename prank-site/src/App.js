@@ -5,6 +5,7 @@ import money from "./static/money.png";
 import Axios from 'axios';
 import SweetAlert from 'sweetalert2-react';
 
+
 function Home() {
   return (
     <div>
@@ -13,24 +14,32 @@ function Home() {
   );
 }
 
-function Profile() {
-  return (
-    <div>
-      <img src={money} alt="金" height="250px"/>
-      {/* profile pageです */}
-      <h1>儲ける方法</h1>
-      <p>何もせずに月300万稼ぐ方法があります。</p>
-      <p>そんな夢のような方法をお教えします。あなたも億万長者になりましょう。</p>
-      <button>もっと詳しく</button>
-      <div id="overlay">
-        <div id="content">
-          <p>これがモーダルウィンドウです</p>
-          <p><button>close</button></p>
-        </div>
+export class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value:''};
+  }
+  render() {
+    return (
+      <div className="profile">
+        <img src={money} alt="金" className="bg"/>
+        <h1>儲ける方法</h1>
+        <p>何もせずに月300万稼ぐ方法があります。</p>
+        <p>そんな夢のような方法をお教えします。あなたも億万長者になりましょう。</p>
+          <button onClick={() => this.setState({ show: true })}>もっと詳しく</button>
+          <SweetAlert
+            show={this.state.show}
+            title="登録完了"
+            text="あなたの登録が完了しました"
+
+            type="success"
+          />
+
       </div>
-    </div>
-  );
+    );
+  }
 }
+
 
 export class About extends React.Component {
   constructor(props) {
