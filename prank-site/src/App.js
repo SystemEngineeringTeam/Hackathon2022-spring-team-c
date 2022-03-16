@@ -41,19 +41,55 @@ export class About extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    // イベントの設定
+    if (window.performance) {
+      if (window.performance.navigation.type === 1) {
+        alert("リロードしても無駄ですよ");
+      } else if (window.performance.navigation.type === 2) {
+        alert("お帰りなさい。待ってたよ。")
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    // イベントの設定解除
+    window.removeEventListener('beforeunload', this.onUnload);
+    if (window.performance) {
+    }
+  }
+
+  onUnload(e) {
+    // e.preventDefault();
+    e.returnValue = '逃げれませんよ';
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <button onClick={() => this.setState({ show: true })}>Alert</button>
+        <div>
+          <button
+            onClick={() => this.setState({ show: true })}
+          >
+            Alert
+          </button>
           <SweetAlert
             show={this.state.show}
-            title="Demo"
-            text="sds sdsnewlen(const void *init, size_t initlen){struct sdshdr *sh; sh = zmalloc(sizeof(struct sdshdr)+initlen+1); \n#ifdef SDS_ABORT_ON_OOM \nif (sh == NULL) sdsOomAbort();\n#else\n    if (sh == NULL) return NULL; \n#endif \nsh->len = initlen; \nsh->free = 0;\n if (initlen) { \nif (init) memcpy(sh->buf, init, initlen);\n     else memset(sh->buf,0,initlen); \n }\nsh->buf[initlen] = '0';\nreturn (char*)sh->buf; \n} "
-            
-            onConfirm={() => this.setState({ show: false })}
+            title="Demo Complex"
+            text="SweetAlert in React"
+            showCancelButton
+            onConfirm={() => {
+              console.log('confirm');
+              alert("hogehoge")
+              this.setState({ show: false });
+            }}
+            onCancel={() => {
+              console.log('cancel');
+              alert("fugafuga")
+              this.setState({ show: false });
+            }}
+            onEscapeKey={() => this.setState({ show: false })}
+            onOutsideClick={() => this.setState({ show: false })}
           />
-        </header>
       </div>
     );
   }
