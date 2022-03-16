@@ -63,33 +63,55 @@ export class About extends React.Component {
     // e.preventDefault();
     e.returnValue = '逃げれませんよ';
   }
+  componentDidMount() {
+    // イベントの設定
+    if (window.performance) {
+      if (window.performance.navigation.type === 1) {
+        alert("リロードしても無駄ですよ");
+      } else if (window.performance.navigation.type === 2) {
+        alert("お帰りなさい。待ってたよ。")
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    // イベントの設定解除
+    window.removeEventListener('beforeunload', this.onUnload);
+    if (window.performance) {
+    }
+  }
+
+  onUnload(e) {
+    // e.preventDefault();
+    e.returnValue = '逃げれませんよ';
+  }
 
   render() {
     return (
-        <div>
-          <button
-            onClick={() => this.setState({ show: true })}
-          >
-            Alert
-          </button>
-          <SweetAlert
-            show={this.state.show}
-            title="Demo Complex"
-            text="SweetAlert in React"
-            showCancelButton
-            onConfirm={() => {
-              console.log('confirm');
-              alert("hogehoge")
-              this.setState({ show: false });
-            }}
-            onCancel={() => {
-              console.log('cancel');
-              alert("fugafuga")
-              this.setState({ show: false });
-            }}
-            onEscapeKey={() => this.setState({ show: false })}
-            onOutsideClick={() => this.setState({ show: false })}
-          />
+      <div>
+        <button
+          onClick={() => this.setState({ show: true })}
+        >
+          Alert
+        </button>
+        <SweetAlert
+          show={this.state.show}
+          title="Demo Complex"
+          text="SweetAlert in React"
+          showCancelButton
+          onConfirm={() => {
+            console.log('confirm');
+            alert("hogehoge")
+            this.setState({ show: false });
+          }}
+          onCancel={() => {
+            console.log('cancel');
+            alert("fugafuga")
+            this.setState({ show: false });
+          }}
+          onEscapeKey={() => this.setState({ show: false })}
+          onOutsideClick={() => this.setState({ show: false })}
+        />
       </div>
     );
   }
