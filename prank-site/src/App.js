@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import money from "./static/money.png";
 import Axios from 'axios';
 import SweetAlert from 'sweetalert2-react';
-
 
 function Home() {
   return (
@@ -34,7 +33,7 @@ export class Profile extends React.Component {
 
             type="success"
           />
-
+        <Link to={`/`}>Go To page1</Link> 
       </div>
     );
   }
@@ -88,14 +87,13 @@ export class About extends React.Component {
             showCancelButton
             onConfirm={() => {
               console.log('confirm');
-              alert("hogehoge")
               this.setState({ show: false });
             }}
             onCancel={() => {
               console.log('cancel');
-              alert("fugafuga")
               this.setState({ show: false });
             }}
+            
             onEscapeKey={() => this.setState({ show: false })}
             onOutsideClick={() => this.setState({ show: false })}
           />
