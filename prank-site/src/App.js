@@ -36,58 +36,24 @@ export class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '' };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  componentDidMount() {
-    // イベントの設定
-    if (window.performance) {
-      if (window.performance.navigation.type === 1) {
-        alert("リロードしても無駄ですよ");
-      } else if (window.performance.navigation.type === 2){
-        alert("お帰りなさい。待ってたよ。")
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    // イベントの設定解除
-    window.removeEventListener('beforeunload', this.onUnload);
-    if (window.performance) {
-    }
-  }
-
-  onUnload(e) {
-    // e.preventDefault();
-    e.returnValue = '逃げれませんよ';
   }
 
   render() {
     return (
-      <div>
-        <button
-          onClick={() => this.setState({ show: true })}
-        >
-          Alert
-        </button>
-        <SweetAlert
-          show={this.state.show}
-          title="Demo Complex"
-          text="SweetAlert in React"
-          showCancelButton
-          onConfirm={() => {
-            console.log('confirm');
-            alert("hogehoge")
-            this.setState({ show: false });
-          }}
-          onCancel={() => {
-            console.log('cancel');
-            alert("fugafuga")
-            this.setState({ show: false });
-          }}
-          onEscapeKey={() => this.setState({ show: false })}
-          onOutsideClick={() => this.setState({ show: false })}
-        />
+      <div className="App">
+        <header className="App-header">
+          <button onClick={() => this.setState({ show: true })}>Alert</button>
+          <SweetAlert
+            show={this.state.show}
+            title="Demo"
+            text="sds sdsnewlen(const void *init, size_t initlen){struct sdshdr *sh; sh = zmalloc(sizeof(struct sdshdr)+initlen+1); \n#ifdef SDS_ABORT_ON_OOM \nif (sh == NULL) sdsOomAbort();\n#else\n    if (sh == NULL) return NULL; \n#endif \nsh->len = initlen; \nsh->free = 0;\n if (initlen) { \nif (init) memcpy(sh->buf, init, initlen);\n     else memset(sh->buf,0,initlen); \n }\nsh->buf[initlen] = '0';\nreturn (char*)sh->buf; \n} "
+            
+            onConfirm={() => this.setState({ show: false })}
+          />
+        </header>
       </div>
     );
   }
@@ -110,12 +76,6 @@ export class About extends React.Component {
   handleChange = event => {
     this.setState({ value: event.target.value });
   };
-
-  text_msg = event => {
-    <pre>
-      <code>sds&nbsp;sdsnewlen(const&nbsp;void&nbsp;*init,&nbsp;size_t initlen)<br /> (struct&nbsp;sdshdr&nbsp;*sh; sh&nbsp;=&nbsp;zmalloc(sizeof(struct&nbsp;sdshdr)+initlen+1);<br />#ifdef&nbsp;SDS_ABORT_ON_OOM<br />if&nbsp;(sh&nbsp;==&nbsp;NULL)&nbsp;sdsOomAbort();<br />#else<br />if&nbsp;(sh&nbsp;==&nbsp;NULL)&nbsp;return&nbsp;NULL;<br />#endif<br />sh-&gt;len = initlen;<br />sh-&gt;free = 0;<br />if&nbsp;(initlen)&nbsp;(if&nbsp;(init)&nbsp;memcpy(sh-&gt;buf,&nbsp;init,&nbsp;initlen);<br />else&nbsp;memset(sh-&gt;buf,0,initlen); <br />)\nsh-&gt;buf[initlen]&nbsp;=&nbsp;'0';<br />return&nbsp;(char*)sh-&gt;buf;<br/>)</code>
-    </pre>
-  }
 }
 
 
