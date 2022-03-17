@@ -4,6 +4,7 @@ export default function fishing() {
     return (
         <div className="profile">
             {/* ここのカウントダウンなどのアレを書く */}
-        </div>
+            <h1>登録完了</h1>
+         </div>
     )
 }

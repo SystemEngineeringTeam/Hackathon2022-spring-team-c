@@ -10,7 +10,7 @@ export default function home() {
             <p>何もせずに月300万稼ぐ方法があります。</p>
             <p>そんな夢のような方法をお教えします。あなたも億万長者になりましょう。</p>
             <Button
-                href="/login" variant="contained"
+                href="/fish" variant="contained"
             >
                 Sign Up
             </Button>
