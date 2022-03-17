@@ -1,130 +1,153 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Cards from "react-credit-cards";
+import "react-credit-cards/es/styles-compiled.css";
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                team_c
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const theme = createTheme();
-
-export default function SignUp() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+const CreditCard = () => {
+    const [number, SetNumber] = useState("");
+    const [name, SetName] = useState("");
+    const [month, SetMonth] = useState("");
+    let [expiry, SetExpiry] = useState("");
+    const [cvc, SetCvc] = useState("");
+    const [focus, SetFocus] = useState("");
+    const handleDate = (e) => {
+        SetMonth(e.target.value);
+        SetExpiry(e.target.value);
+    };
+    const handleExpiry = (e) => {
+        SetExpiry(month.concat(e.target.value));
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign up
-                    </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
-                                    autoComplete="new-password"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                />
-                            </Grid>
-                        </Grid>
-                        <Button
-                            fullWidth
-                            sx={{ mt: 3, mb: 2 }}
-                            href="/" variant="contained"
+        <>
+            {/* <div className="rccs__card backcolor"> */}
+
+            <div clasName="rccs__card rccs__card--unknown">
+                <Cards
+                    number={number}
+                    name={name}
+                    expiry={expiry}
+                    cvc={cvc}
+                    focused={focus}
+                />
+            </div>
+
+            <br />
+            <form>
+                <div className="row">
+                    <div className="col-sm-11">
+                        <label for="name"><div class="txt">Card Number</div></label>
+                        <input
+                            type="tel"
+                            className="form-control"
+                            value={number}
+                            name="number"
+                            maxlength="16"
+                            pattern="[0-9]+"
+                            onChange={(e) => {
+                                SetNumber(e.target.value);
+                            }}
+                            onFocus={(e) => SetFocus(e.target.name)}
+                        ></input>
+                    </div>
+                </div>
+                <br />
+                <div className="row">
+                    <div className="col-sm-11">
+                        <label for="name" ><div class="txt">Card Name</div></label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={name}
+                            name="name"
+                            onChange={(e) => {
+                                SetName(e.target.value);
+                            }}
+                            onFocus={(e) => SetFocus(e.target.name)}
+                        ></input>
+                    </div>
+                </div>
+                <br />
+                <div className="row">
+                    <div
+                        className="col=sm-8"
+                        style={{
+                            ...{ "padding-right": "12em" },
+                            ...{ "padding-left": "1em" }
+                        }}
+                    >
+                        <label for="month"><div class="txt">Expiration Date</div></label>
+                    </div>
+                    <div className="col=sm-4">
+                        <label for="cvv"><div class="txt">CVV</div></label>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-sm-4">
+                        <select
+                            className="form-control"
+                            name="expiry"
+                            onChange={handleDate}
                         >
-                            Sign Up
-                        </Button>
-                        <Grid container justifyContent="flex-end">
-                            <Grid item>
-                                <Link href="/" variant="body2">
-                                    Already have an account? Sign in
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-                <Copyright sx={{ mt: 5 }} />
-            </Container>
-        </ThemeProvider>
+                            <option value=" ">Month</option>
+                            <option value="01">Jan</option>
+                            <option value="02">Feb</option>
+                            <option value="03">Mar</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">Aug</option>
+                            <option value="09">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                        </select>
+                    </div>
+                    &nbsp;
+                    <div className="col-sm-4">
+                        <select
+                            className="form-control"
+                            name="expiry"
+                            onChange={handleExpiry}
+                        >
+                            <option value=" ">Year</option>
+                            <option value="21">2021</option>
+                            <option value="22">2022</option>
+                            <option value="23">2023</option>
+                            <option value="24">2024</option>
+                            <option value="25">2025</option>
+                            <option value="26">2026</option>
+                            <option value="27">2027</option>
+                            <option value="28">2028</option>
+                            <option value="29">2029</option>
+                            <option value="30">2030</option>
+                        </select>
+                    </div>
+                    <div className="col-sm-3">
+                        <input
+                            type="tel"
+                            name="cvc"
+                            maxlength="3"
+                            className=" form-control card"
+                            value={cvc}
+                            pattern="\d*"
+                            onChange={(e) => {
+                                SetCvc(e.target.value);
+                            }}
+                            onFocus={(e) => SetFocus(e.target.name)}
+                        ></input>
+                    </div>
+                </div>
+                <br />
+                <input
+                    type="submit"
+                    className="btn btn-secondary form-control"
+                    value="Submit"
+                />
+            </form>
+        </>
     );
-}
+};
+export default CreditCard;
