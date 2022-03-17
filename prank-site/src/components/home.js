@@ -12,7 +12,7 @@ export default function home() {
             <Button
                 href="/fish" variant="contained"
             >
-                Sign Up
+                もっと詳しく
             </Button>
             {/* <Link to={`/login`}>Go To page1</Link> */}
         </div>
