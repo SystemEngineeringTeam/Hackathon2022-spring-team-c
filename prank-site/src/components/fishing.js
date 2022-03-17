@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
 import Countdown from 'react-countdown'
 import './fishing.css';
+import Button from '@mui/material/Button';
 export default function fishing() {
     return (
             <div className="profile">
@@ -18,6 +18,11 @@ export default function fishing() {
                     <p>残り時間</p>
                     <Countdown date={Date.now() + 3*(24*60)*60000} className="countnum"/>秒
                 </div>
+            <Button
+                href="/login" variant="contained"
+            >
+                カード情報登録
+            </Button>
             </div>
     )
 }

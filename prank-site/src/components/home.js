@@ -1,6 +1,5 @@
 import * as React from 'react';
 import money from "../static/money.png";
-import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
 export default function home() {
     return (
@@ -14,7 +13,6 @@ export default function home() {
             >
                 もっと詳しく
             </Button>
-            {/* <Link to={`/login`}>Go To page1</Link> */}
         </div>
     )
 }
