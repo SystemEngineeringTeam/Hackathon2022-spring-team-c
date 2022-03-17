@@ -1,0 +1,32 @@
+
+body {
+   background-color: #0A024A;
+}
+
+.profile {
+   margin: 50px;
+   color: white;
+   text-align: center;
+}
+#h1 {
+   font-size: 40px;
+   background-color: #12F8D5  ;
+}
+
+.emphasize {
+   font-size: 20px;
+   font-weight: bold;
+   color: #FA1D88;
+}
+
+.countdown {
+   margin: 20px 300px;
+   padding: 20px;
+   background-color: #FA1D88;
+   color: white;
+   text-align: center;
+}
+
+.countnum {
+   font-size: 50px;
+}
