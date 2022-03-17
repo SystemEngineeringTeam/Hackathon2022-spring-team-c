@@ -1,6 +1,5 @@
 {
   "name": "prank-site",
-  "homepage" :"https://systemengineeringteam.github.io/Hackathon2022-spring-team-c/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
